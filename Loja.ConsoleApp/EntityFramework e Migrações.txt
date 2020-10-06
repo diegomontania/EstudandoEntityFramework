@@ -1,0 +1,41 @@
+Migração para fazer alterações na tabela do banco de dados de acordo com as novas regras da classe
+
+	Antes de criar a migração, deve-se fazer o "versionamento" da classe atual que está sincronizada com o banco.
+	
+	Por exemplo, A classe 'Produtos.cs' tem os campos 'nome', 'preco', 'categoria'. 
+	O Banco de dados atual também possui esses campos. Ou seja, está sincronizado com a classe. 
+	Deve-se Criar uma versão DESSE banco para no futuro, as migrações ocorram e o histórico de migrações seja mantido.
+
+Para isso pode-se utilizar os comandos de migração normalmente, conforme descrito nos 2 passos abaixo após a observação.
+
+OBS: Para o primeiro "Commit" do versionamento : 'Add-Migration Inicial'
+Onde, 'Inicial' é o nome da versão do banco. Neste caso a versão é inicial.
+
+_______________________________________________________________________________________________
+
+A migração após o versionamento feito, ocorre em 2 passos :
+
+1 - Registrar a migração
+	Utilizando comando 'Add-Migration'
+	ex : Add-Migration [NOME VERSAO AQUI]
+	ex2: Add-Migration Unidade
+
+2 - Finalizar o processo
+	Existem duas formas de finalizar o processo de migração :	
+
+	2.1 - Gerar script 'Script-Migration', mais comum utilizado no mercado.
+		Este script será rodado pelo DBA ou responsável pelo banco de dados.
+
+	2.2 - Rodar diretamente
+		Que vai pegar a versão registrada
+		e vai executar essa versão no banco de dados, diretamente e na hora.
+		O banco modificado será aquele que foi apontado na classe de contexto.
+		No exemplo deste projeto 'LojaContext.cs'
+
+		Utilizando comando 'Update-Database'
+		
+		ex : Update-Database
+
+		ex2: Update-Database Inicial 
+
+		Onde, 'Inicial' é o nome da versão do banco. O Update será feito nessa versão.
